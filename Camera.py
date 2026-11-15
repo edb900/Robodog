@@ -6,21 +6,22 @@ yolo = YOLO("yolov8n.pt")
 
 
 
-def find_camera():
-    for index in range(5):  # Check indexes 0 through 4
-        cap = cv.VideoCapture(index)
-        if cap.isOpened():
-            print(f"Camera found at index: {index}")
-            cap.release()
-            return index
-        cap.release()
-    print("No camera found.")
-    return None
+# def find_camera():
+#     for index in range(5):  # Check indexes 0 through 4
+#         cap = cv.VideoCapture(index)
+#         if cap.isOpened():
+#             print(f"Camera found at index: {index}")
+#             cap.release()
+#             return index
+#         cap.release()
+#     print("No camera found.")
+#     return None
 
-working_index = find_camera()
+# working_index = find_camera()
 
 
-cap = cv.VideoCapture(0)
+# cap = cv.VideoCapture(0)
+cap = cv.VideoCapture("/dev/video8", cv.CAP_V4L2)
 
 # Check if the camera opened successfully
 if not cap.isOpened():
