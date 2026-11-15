@@ -20,7 +20,7 @@ def find_camera():
 working_index = find_camera()
 
 
-cap = cv.VideoCapture("Test.mp4")
+cap = cv.VideoCapture(0)
 
 # Check if the camera opened successfully
 if not cap.isOpened():
@@ -41,7 +41,7 @@ while True and framecap <= 800:
     if not ret:
         print("Error: Failed to grab frame")
         break
-    results = yolo.track(frame, classes=[67], stream=True)
+    results = yolo.track(frame, stream=True)
     for result in results:
         class_names = result.names 
         for box in result.boxes:
@@ -69,6 +69,8 @@ while True and framecap <= 800:
                             (x1, max(y1 - 10, 20)), cv.FONT_HERSHEY_SIMPLEX,
                             0.6, 2)
 
+
+    
     
     # Display the captured frame in a window named "Live Camera Feed"
     cv.imshow('Live Camera Feed', frame)
